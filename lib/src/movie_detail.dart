@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
-import './movie_client.dart';
+import './api/movie_client.dart';
 import './models/movie_detail_model.dart';
 
 

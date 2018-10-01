@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import './movie_client.dart';
-import './movie_models_factory.dart';
 import './models/movie_model.dart';
+import './api/movie_client.dart';
+import './models/movie_models_factory.dart';
 import './movie_detail.dart';
 
 class MovieList extends StatefulWidget {
@@ -39,6 +39,7 @@ class _MovieListState extends State<MovieList> {
           children: <Widget>[
             Expanded(
               child: TextFormField(
+                key: Key("searchForm"),
                 decoration: InputDecoration(
                   labelText: "Movie Title",
                 ),
@@ -47,6 +48,7 @@ class _MovieListState extends State<MovieList> {
               ),
             ),
             IconButton(
+              key: Key("searchButton"),
               icon: Icon(Icons.search),
               onPressed: () {
                 if(_formKey.currentState.validate()) {

@@ -1,4 +1,4 @@
-import './models/movie_model.dart';
+import './movie_model.dart';
 
 class MovieModelsFactory {
   static List<MovieModel> create(Map<String, dynamic> json) {

@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
-import 'package:flutter_movies/movie_models_factory.dart';
-import 'package:flutter_movies/models/movie_model.dart';
+import 'package:flutter_movies/src/models/movie_models_factory.dart';
+import 'package:flutter_movies/src/models/movie_model.dart';
 
 void main() {
   test("Create MovieModels from json data.", () {
