@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
-import './api/movie_client.dart';
+import './api/omdb_movie_client.dart';
 import './models/movie_detail_model.dart';
 
 
@@ -47,7 +47,8 @@ class MovieDetail extends StatelessWidget {
   }
 
   Future<MovieDetailModel> _fetchMovie() async {
-    MovieClient client = MovieClient();
+    // TODO inject the instance 'OmdbMovieClient' from constructor
+    OmdbMovieClient client = OmdbMovieClient();
     String movieJson = await client.fetchMovie(_imdbID);
     return MovieDetailModel.fromJson(json.decode(movieJson));
   }

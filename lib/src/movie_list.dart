@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import './models/movie_model.dart';
-import './api/movie_client.dart';
+import './api/omdb_movie_client.dart';
 import './models/movie_models_factory.dart';
 import './movie_detail.dart';
 
@@ -53,7 +53,8 @@ class _MovieListState extends State<MovieList> {
               onPressed: () {
                 if(_formKey.currentState.validate()) {
                   _formKey.currentState.save();
-                  MovieClient client = MovieClient();
+                  // TODO inject the instance 'OmdbMovieClient' from constructor
+                  OmdbMovieClient client = OmdbMovieClient();
                   client.fetchMovies(_searchWord).then((response) {
                     List<MovieModel> movies = MovieModelsFactory.create(json.decode(response));
                     setState(() {
