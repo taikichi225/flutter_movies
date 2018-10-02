@@ -29,16 +29,7 @@ class MovieDetail extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: ListView(
-                  children: <Widget>[
-                    Hero(tag:movie.imdbID, child: Image.network(movie.poster, fit: BoxFit.contain,),),
-                    ListTile(title: Text("Title"), subtitle: Text(movie.title),),
-                    ListTile(title: Text("Year"), subtitle: Text(movie.year),),
-                    ListTile(title: Text("Released"), subtitle: Text(movie.released),),
-                    ListTile(title: Text("Runtime"), subtitle: Text(movie.runtime),),
-                    ListTile(title: Text("Genre"), subtitle: Text(movie.genre),),
-                    ListTile(title: Text("Director"), subtitle: Text(movie.director),),
-                    ListTile(title: Text("Actors"), subtitle: Text(movie.actors),),
-                  ],
+                  children: buildListTile(movie),
                 ),
               ),
             ],
@@ -46,6 +37,19 @@ class MovieDetail extends StatelessWidget {
         },
       ),
     );
+  }
+
+  List<Widget> buildListTile(MovieDetailModel movie) {
+    return [
+      Hero(tag:movie.imdbID, child: Image.network(movie.poster, fit: BoxFit.contain,),),
+      ListTile(title: Text("Title"), subtitle: Text(movie.title),),
+      ListTile(title: Text("Year"), subtitle: Text(movie.year),),
+      ListTile(title: Text("Released"), subtitle: Text(movie.released),),
+      ListTile(title: Text("Runtime"), subtitle: Text(movie.runtime),),
+      ListTile(title: Text("Genre"), subtitle: Text(movie.genre),),
+      ListTile(title: Text("Director"), subtitle: Text(movie.director),),
+      ListTile(title: Text("Actors"), subtitle: Text(movie.actors),),
+    ];
   }
 
   Future<MovieDetailModel> _fetchMovie() async {
