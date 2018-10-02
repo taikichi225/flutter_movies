@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:http/http.dart' show Client;
 import 'movie_client.dart';
+export 'movie_client.dart';
 
 class OmdbMovieClient implements MovieClient {
   String url = "http://www.omdbapi.com/";

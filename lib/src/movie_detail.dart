@@ -2,13 +2,15 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import './api/omdb_movie_client.dart';
+import './api/movie_client.dart';
 import './models/movie_detail_model.dart';
 
 
 class MovieDetail extends StatelessWidget {
-  final _imdbID;
+  final String imdbID;
+  final MovieClient client;
 
-  MovieDetail(this._imdbID);
+  MovieDetail({Key key, @required this.imdbID, @required this.client}) : super(key: key);
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +49,7 @@ class MovieDetail extends StatelessWidget {
   }
 
   Future<MovieDetailModel> _fetchMovie() async {
-    // TODO inject the instance 'OmdbMovieClient' from constructor
-    OmdbMovieClient client = OmdbMovieClient();
-    String movieJson = await client.fetchMovie(_imdbID);
+    String movieJson = await client.fetchMovie(imdbID);
     return MovieDetailModel.fromJson(json.decode(movieJson));
   }
 }

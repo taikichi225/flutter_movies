@@ -6,6 +6,10 @@ import './models/movie_models_factory.dart';
 import './movie_detail.dart';
 
 class MovieList extends StatefulWidget {
+  final MovieClient client;
+
+  MovieList({Key key, @required this.client}) : super(key: key);
+
   _MovieListState createState() => _MovieListState();
 }
 
@@ -53,8 +57,7 @@ class _MovieListState extends State<MovieList> {
               onPressed: () {
                 if(_formKey.currentState.validate()) {
                   _formKey.currentState.save();
-                  // TODO inject the instance 'OmdbMovieClient' from constructor
-                  OmdbMovieClient client = OmdbMovieClient();
+                  MovieClient client = widget.client;
                   client.fetchMovies(_searchWord).then((response) {
                     List<MovieModel> movies = MovieModelsFactory.create(json.decode(response));
                     setState(() {
@@ -86,7 +89,7 @@ class _MovieListState extends State<MovieList> {
             title: Text(movie.title),
             subtitle: Text(movie.year),
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => MovieDetail(movie.imdbID)));
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => MovieDetail(imdbID: movie.imdbID, client: OmdbMovieClient())));
             },
           );
         },
