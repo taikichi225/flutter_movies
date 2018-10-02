@@ -23,14 +23,14 @@ class _MovieListState extends State<MovieList> {
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          buildSearch(),
+          buildSearchBox(),
           buildList(),
         ],
       ),
     );
   }
 
-  Widget buildSearch() {
+  Widget buildSearchBox() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       child: Form(
@@ -68,18 +68,14 @@ class _MovieListState extends State<MovieList> {
   }
 
   Widget buildList() {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-
     return Expanded(
       child: ListView.builder(
-        scrollDirection: Axis.vertical,
         itemCount: _movies.length,
         itemBuilder: (BuildContext context, int index) {
           MovieModel movie = _movies[index];
 
           return ListTile(
-            leading: Hero(tag:movie.imdbID, child: Image.network(movie.poster, height: height / 8, width: width / 8,),),
+            leading: Hero(tag:movie.imdbID, child: Image.network(movie.poster, height: 65.0, width: 50.0,),),
             title: Text(movie.title),
             subtitle: Text(movie.year),
             onTap: () {
