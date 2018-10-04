@@ -10,7 +10,11 @@ class MovieDetail extends StatelessWidget {
   final String imdbID;
   final MovieClient client;
 
-  MovieDetail({Key key, @required this.imdbID, @required this.client}) : super(key: key);
+  MovieDetail({
+    Key key,
+    @required this.imdbID,
+    @required this.client,
+  }) : super(key: key);
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +22,7 @@ class MovieDetail extends StatelessWidget {
         title: Text("Detail"),
       ),
       body: FutureBuilder(
-        future: _fetchMovie(),
+        future: fetchMovie(),
         builder: (BuildContext context, AsyncSnapshot<MovieDetailModel> snapshot) {
           if(!snapshot.hasData) {
             return Center(child: CircularProgressIndicator(),);
@@ -29,7 +33,7 @@ class MovieDetail extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: ListView(
-                  children: buildListTile(movie),
+                  children: buildListItem(movie),
                 ),
               ),
             ],
@@ -39,7 +43,7 @@ class MovieDetail extends StatelessWidget {
     );
   }
 
-  List<Widget> buildListTile(MovieDetailModel movie) {
+  List<Widget> buildListItem(MovieDetailModel movie) {
     return [
       Hero(tag:movie.imdbID, child: Image.network(movie.poster, fit: BoxFit.contain,),),
       ListTile(title: Text("Title"), subtitle: Text(movie.title),),
@@ -52,7 +56,7 @@ class MovieDetail extends StatelessWidget {
     ];
   }
 
-  Future<MovieDetailModel> _fetchMovie() async {
+  Future<MovieDetailModel> fetchMovie() async {
     String movieJson = await client.fetchMovie(imdbID);
     return MovieDetailModel.fromJson(json.decode(movieJson));
   }

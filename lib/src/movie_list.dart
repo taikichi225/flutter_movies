@@ -8,7 +8,10 @@ import './movie_detail.dart';
 class MovieList extends StatefulWidget {
   final MovieClient client;
 
-  MovieList({Key key, @required this.client}) : super(key: key);
+  MovieList({
+    Key key,
+    @required this.client,
+  }) : super(key: key);
 
   _MovieListState createState() => _MovieListState();
 }
@@ -25,7 +28,6 @@ class _MovieListState extends State<MovieList> {
         title: Text("Movies"),
       ),
       body: Column(
-        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           buildSearch(),
           buildList(),
@@ -86,7 +88,11 @@ class _MovieListState extends State<MovieList> {
             title: Text(movie.title),
             subtitle: Text(movie.year),
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => MovieDetail(imdbID: movie.imdbID, client: OmdbMovieClient())));
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => MovieDetail(imdbID: movie.imdbID, client: OmdbMovieClient())
+                )
+              );
             },
           );
         },
