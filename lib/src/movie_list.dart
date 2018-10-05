@@ -119,7 +119,9 @@ class _MovieListState extends State<MovieList> {
           // リストの要素を定義する。
           return ListTile(
             // Heroで画面をまたいだアニメーションを定義する。タグでウィジェットを特定する。
-            leading: Hero(tag:movie.imdbID, child: Image.network(movie.poster, height: 65.0, width: 50.0,),),
+            leading: Hero(tag:movie.imdbID, child: movie.poster != null && movie.poster != "" 
+                            ? Image.network(movie.poster, height: 65.0, width: 50.0,)
+                            : Container(),),
             title: Text(movie.title),
             subtitle: Text(movie.year),
             // リストの要素がタップされた際の処理を設定する。

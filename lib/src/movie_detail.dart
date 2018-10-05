@@ -55,7 +55,9 @@ class MovieDetail extends StatelessWidget {
   /// 映画詳細画面の表示項目リストを返す。
   List<Widget> buildListItem(MovieDetailModel movie) {
     return [
-      Hero(tag:movie.imdbID, child: Image.network(movie.poster, fit: BoxFit.contain,),),
+      Hero(tag:movie.imdbID, child: movie.poster != null && movie.poster != "" 
+                            ? Image.network(movie.poster, fit: BoxFit.contain,)
+                            : Container(),),
       ListTile(title: Text("Title"), subtitle: Text(movie.title),),
       ListTile(title: Text("Year"), subtitle: Text(movie.year),),
       ListTile(title: Text("Released"), subtitle: Text(movie.released),),
