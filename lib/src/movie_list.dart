@@ -85,9 +85,11 @@ class _MovieListState extends State<MovieList> {
                   // _formKey経由でFormのsaveメソッドを呼び出す。
                   // TextFormFieldのonSavedで登録していた処理が呼び出される。
                   _formKey.currentState.save();
-                  // widget変数経由でStatefulWidgetのインスタンス変数にアクセスできる。
+                  // widget変数経由でStatefulWidget「MovieList」のインスタンス変数にアクセスできる。
                   MovieClient client = widget.client;
                   client.fetchMovies(_searchWord).then((response) {
+                    // 'dart:convert'パッケージのdecodeメソッドを利用し、
+                    // JSONの文字列をMap<String, dynamic>に変換する。
                     List<MovieModel> movies = MovieModelsFactory.create(json.decode(response));
                     // setStateメソッドを呼び出すと再びbuildメソッドが呼び出され、新たな状態をもとに再描画される。
                     setState(() {

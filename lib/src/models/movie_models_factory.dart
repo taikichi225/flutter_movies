@@ -1,5 +1,6 @@
 import './movie_model.dart';
 
+/// [MovieModel]を生成するためのヘルパークラス
 class MovieModelsFactory {
   static List<MovieModel> create(Map<String, dynamic> json) {
     List moviesJson = json["Search"];
