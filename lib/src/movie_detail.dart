@@ -10,6 +10,7 @@ class MovieDetail extends StatelessWidget {
   final String imdbID;
   final MovieClient client;
 
+  // コンストラクタ
   MovieDetail({
     Key key,
     // OMDb APIにおける映画を一意に特定するID。

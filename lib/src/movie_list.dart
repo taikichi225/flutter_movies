@@ -9,6 +9,7 @@ import './movie_detail.dart';
 class MovieList extends StatefulWidget {
   final MovieClient client;
 
+  // コンストラクタ
   MovieList({
     Key key,
     // テストしやすくするため、MovieClientを外部から注入する。
@@ -31,7 +32,8 @@ class _MovieListState extends State<MovieList> {
   /// 画面に表示されるウィジェットを返す。 
   /// [State]は必ず[Widget]を返す[build]メソッドを実装しなければならない。
   Widget build(BuildContext context) {
-    // Scaffoldは、material designのレイアウトを作るときの雛形を提供してくれる。
+    // Scaffoldは、material designのレイアウトを作るときの雛形を提供する便利ウィジェット。
+    // アプリケーションバーやドロワー、フローティングアクションボタンなど、を定義する。
     return Scaffold(
       // appBarに、アプリケーションバーの実装を設定する。
       appBar: AppBar(
@@ -51,9 +53,10 @@ class _MovieListState extends State<MovieList> {
   /// 独自定義した検索ボックス[Widget]を返す。
   Widget buildSearch() {
     return Padding(
+      // フォームの左右にパディングを追加する。
       padding: EdgeInsets.symmetric(horizontal: 10.0),
       child: Form(
-        // GlobalKeyを登録することで、_formKey経由でFormウィジェットにアクセスできる。
+        // GlobalKeyを登録することで、_formKey経由でFormStateウィジェットにアクセスできる。
         key: _formKey,
         child: Row(
           children: <Widget>[
@@ -64,11 +67,13 @@ class _MovieListState extends State<MovieList> {
                 // テスト中に入力フォームウィジェットを特定するため、keyを設定する。
                 key: Key("searchForm"),
                 decoration: InputDecoration(
+                  // フォーム上部にラベルを表示する。
                   labelText: "Movie Title",
                 ),
                 // バリデーションの処理を設定する。
+                // FormStateのvalidateメソッドを実行したときに呼ばれる。
                 validator: (String value) => value.isEmpty ? "Enter movie title" : null,
-                // saveメソッドが呼ばれた際に、実行される処理を設定する。
+                // FormStateのsaveメソッドが呼ばれた際に、実行される処理を設定する。
                 onSaved: (String value) => this._searchWord = value,
               ),
             ),

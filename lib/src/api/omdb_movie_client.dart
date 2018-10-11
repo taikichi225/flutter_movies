@@ -10,7 +10,7 @@ class OmdbMovieClient implements MovieClient {
   // OMDb API登録時に取得したAPI Keyに差し替えてください。
   final String apiKey = "[Your API Key]";
   
-  Client client = Client();
+  final Client client = Client();
 
   /// [searchWord]をもとに映画情報を取得する。
   Future<String> fetchMovies(String searchWord) {
